@@ -23,7 +23,7 @@ const allProducts = [
     vendor: "EcoEssentials Co.",
     price: 24.99,
     image:
-      "https://images.unsplash.com/photo-1517256064527-09c73fc73e38?w=500&q=80",
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSzG9LXxPfCQ5L6Cu61haQ61bjxSb9SGs8fEQ&s",
     rating: 4.8,
     reviews: 234,
     ecoScore: 95,
