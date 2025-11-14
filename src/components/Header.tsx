@@ -1,7 +1,8 @@
 import { Link } from "react-router-dom";
-import { ShoppingCart, User, Leaf, Search } from "lucide-react";
+import { User, Leaf, Search } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { CartDrawer } from "./CartDrawer";
 
 const Header = () => {
   return (
@@ -22,6 +23,9 @@ const Header = () => {
           <Link to="/vendors" className="text-sm font-medium text-foreground hover:text-primary transition-colors">
             Vendors
           </Link>
+          <Link to="/community" className="text-sm font-medium text-foreground hover:text-primary transition-colors">
+            Community
+          </Link>
           <Link to="/about" className="text-sm font-medium text-foreground hover:text-primary transition-colors">
             About
           </Link>
@@ -36,15 +40,12 @@ const Header = () => {
             />
           </div>
           
-          <Button variant="ghost" size="icon" className="relative">
-            <ShoppingCart className="h-5 w-5" />
-            <span className="absolute -top-1 -right-1 h-4 w-4 rounded-full bg-primary text-[10px] font-bold text-primary-foreground flex items-center justify-center">
-              0
-            </span>
-          </Button>
+          <CartDrawer />
           
-          <Button variant="ghost" size="icon">
-            <User className="h-5 w-5" />
+          <Button variant="ghost" size="icon" asChild>
+            <Link to="/dashboard">
+              <User className="h-5 w-5" />
+            </Link>
           </Button>
         </div>
       </div>

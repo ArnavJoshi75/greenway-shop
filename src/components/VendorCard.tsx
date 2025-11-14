@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router-dom';
 import { Card, CardContent, CardFooter } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
@@ -21,6 +22,8 @@ interface VendorCardProps {
 }
 
 export function VendorCard({ vendor }: VendorCardProps) {
+  const navigate = useNavigate();
+
   const getSustainabilityColor = (score: number) => {
     if (score >= 90) return 'text-eco-light';
     if (score >= 80) return 'text-eco-medium';
@@ -28,7 +31,7 @@ export function VendorCard({ vendor }: VendorCardProps) {
   };
 
   return (
-    <Card className="group hover:shadow-lg transition-all duration-300 hover:-translate-y-1 overflow-hidden">
+    <Card className="group hover:shadow-lg transition-all duration-300 hover:-translate-y-1 overflow-hidden cursor-pointer" onClick={() => navigate(`/vendors/${vendor.id}`)}>
       {/* Vendor Image */}
       <div className="relative h-48 overflow-hidden">
         <img
@@ -94,7 +97,10 @@ export function VendorCard({ vendor }: VendorCardProps) {
       </CardContent>
 
       <CardFooter className="p-6 pt-0">
-        <Button className="w-full" variant="outline">
+        <Button className="w-full" variant="outline" onClick={(e) => {
+          e.stopPropagation();
+          navigate(`/vendors/${vendor.id}`);
+        }}>
           View Profile
         </Button>
       </CardFooter>
