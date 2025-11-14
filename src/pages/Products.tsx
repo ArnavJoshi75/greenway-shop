@@ -5,7 +5,13 @@ import ProductCard from "@/components/ProductCard";
 import ProductFilters from "@/components/ProductFilters";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { Search, SlidersHorizontal } from "lucide-react";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 
@@ -16,7 +22,8 @@ const allProducts = [
     name: "Bamboo Coffee Tumbler",
     vendor: "EcoEssentials Co.",
     price: 24.99,
-    image: "https://images.unsplash.com/photo-1517256064527-09c73fc73e38?w=500&q=80",
+    image:
+      "https://images.unsplash.com/photo-1517256064527-09c73fc73e38?w=500&q=80",
     rating: 4.8,
     reviews: 234,
     ecoScore: 95,
@@ -29,8 +36,9 @@ const allProducts = [
     id: 2,
     name: "Organic Cotton Tote Bag",
     vendor: "GreenThreads",
-    price: 18.50,
-    image: "https://images.unsplash.com/photo-1591195853828-11db59a44f6b?w=500&q=80",
+    price: 18.5,
+    image:
+      "https://images.unsplash.com/photo-1591195853828-11db59a44f6b?w=500&q=80",
     rating: 4.9,
     reviews: 456,
     ecoScore: 98,
@@ -43,8 +51,9 @@ const allProducts = [
     id: 3,
     name: "Reusable Food Wraps Set",
     vendor: "ZeroWaste Living",
-    price: 32.00,
-    image: "https://images.unsplash.com/photo-1584735175097-719d848f8449?w=500&q=80",
+    price: 32.0,
+    image:
+      "https://images.unsplash.com/photo-1584735175097-719d848f8449?w=500&q=80",
     rating: 4.7,
     reviews: 189,
     ecoScore: 92,
@@ -58,7 +67,8 @@ const allProducts = [
     name: "Solar Power Bank",
     vendor: "SunCharge Tech",
     price: 45.99,
-    image: "https://images.unsplash.com/photo-1625948515291-69613efd103f?w=500&q=80",
+    image:
+      "https://images.unsplash.com/photo-1625948515291-69613efd103f?w=500&q=80",
     rating: 4.6,
     reviews: 312,
     ecoScore: 88,
@@ -72,7 +82,8 @@ const allProducts = [
     name: "Stainless Steel Water Bottle",
     vendor: "PureHydro",
     price: 29.99,
-    image: "https://images.unsplash.com/photo-1602143407151-7111542de6e8?w=500&q=80",
+    image:
+      "https://images.unsplash.com/photo-1602143407151-7111542de6e8?w=500&q=80",
     rating: 4.9,
     reviews: 567,
     ecoScore: 96,
@@ -85,8 +96,9 @@ const allProducts = [
     id: 6,
     name: "Biodegradable Phone Case",
     vendor: "EcoTech Solutions",
-    price: 22.50,
-    image: "https://images.unsplash.com/photo-1601784551446-20c9e07cdbdb?w=500&q=80",
+    price: 22.5,
+    image:
+      "https://images.unsplash.com/photo-1601784551446-20c9e07cdbdb?w=500&q=80",
     rating: 4.5,
     reviews: 198,
     ecoScore: 93,
@@ -99,8 +111,9 @@ const allProducts = [
     id: 7,
     name: "Hemp Canvas Backpack",
     vendor: "NaturePack",
-    price: 68.00,
-    image: "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=500&q=80",
+    price: 68.0,
+    image:
+      "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=500&q=80",
     rating: 4.8,
     reviews: 342,
     ecoScore: 97,
@@ -114,7 +127,8 @@ const allProducts = [
     name: "Recycled Paper Notebook Set",
     vendor: "EarthWrite",
     price: 15.99,
-    image: "https://images.unsplash.com/photo-1531346590447-684e6dc63156?w=500&q=80",
+    image:
+      "https://images.unsplash.com/photo-1531346590447-684e6dc63156?w=500&q=80",
     rating: 4.7,
     reviews: 289,
     ecoScore: 94,
@@ -133,7 +147,7 @@ const Products = () => {
     carbonFootprint: [0, 5] as [number, number],
     biodegradable: false,
     materials: [] as string[],
-    priceRange: [0, 100] as [number, number],
+    priceRange: [0, 8300] as [number, number],
   });
 
   const itemsPerPage = 8;
@@ -141,22 +155,32 @@ const Products = () => {
   // Filter and sort products
   const filteredProducts = useMemo(() => {
     let filtered = allProducts.filter((product) => {
-      const matchesSearch = product.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      const matchesSearch =
+        product.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
         product.vendor.toLowerCase().includes(searchQuery.toLowerCase());
-      
-      const matchesCarbonFootprint = product.carbonFootprint >= filters.carbonFootprint[0] &&
+
+      const matchesCarbonFootprint =
+        product.carbonFootprint >= filters.carbonFootprint[0] &&
         product.carbonFootprint <= filters.carbonFootprint[1];
-      
-      const matchesBiodegradable = !filters.biodegradable || product.biodegradable;
-      
-      const matchesMaterial = filters.materials.length === 0 || 
+
+      const matchesBiodegradable =
+        !filters.biodegradable || product.biodegradable;
+
+      const matchesMaterial =
+        filters.materials.length === 0 ||
         filters.materials.includes(product.material);
-      
-      const matchesPrice = product.price >= filters.priceRange[0] && 
+
+      const matchesPrice =
+        product.price >= filters.priceRange[0] &&
         product.price <= filters.priceRange[1];
 
-      return matchesSearch && matchesCarbonFootprint && matchesBiodegradable && 
-        matchesMaterial && matchesPrice;
+      return (
+        matchesSearch &&
+        matchesCarbonFootprint &&
+        matchesBiodegradable &&
+        matchesMaterial &&
+        matchesPrice
+      );
     });
 
     // Sort products
@@ -185,7 +209,10 @@ const Products = () => {
   // Pagination
   const totalPages = Math.ceil(filteredProducts.length / itemsPerPage);
   const startIndex = (currentPage - 1) * itemsPerPage;
-  const paginatedProducts = filteredProducts.slice(startIndex, startIndex + itemsPerPage);
+  const paginatedProducts = filteredProducts.slice(
+    startIndex,
+    startIndex + itemsPerPage
+  );
 
   const handleFilterChange = (newFilters: typeof filters) => {
     setFilters(newFilters);
@@ -195,7 +222,7 @@ const Products = () => {
   return (
     <div className="min-h-screen flex flex-col">
       <Header />
-      
+
       <main className="flex-1">
         {/* Hero Section */}
         <section className="bg-gradient-to-br from-primary/10 via-background to-secondary/10 py-12 md:py-16">
@@ -204,8 +231,12 @@ const Products = () => {
               <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-4 animate-fade-in">
                 Sustainable Products
               </h1>
-              <p className="text-lg text-muted-foreground animate-fade-in" style={{ animationDelay: "0.1s" }}>
-                Discover eco-friendly alternatives for everyday items. Every purchase makes a difference.
+              <p
+                className="text-lg text-muted-foreground animate-fade-in"
+                style={{ animationDelay: "0.1s" }}
+              >
+                Discover eco-friendly alternatives for everyday items. Every
+                purchase makes a difference.
               </p>
             </div>
           </div>
@@ -237,7 +268,10 @@ const Products = () => {
                     </Button>
                   </SheetTrigger>
                   <SheetContent side="left" className="w-80 overflow-y-auto">
-                    <ProductFilters filters={filters} onFilterChange={handleFilterChange} />
+                    <ProductFilters
+                      filters={filters}
+                      onFilterChange={handleFilterChange}
+                    />
                   </SheetContent>
                 </Sheet>
 
@@ -250,8 +284,12 @@ const Products = () => {
                     <SelectItem value="popular">Most Popular</SelectItem>
                     <SelectItem value="rating">Highest Rated</SelectItem>
                     <SelectItem value="eco-score">Eco Score</SelectItem>
-                    <SelectItem value="price-low">Price: Low to High</SelectItem>
-                    <SelectItem value="price-high">Price: High to Low</SelectItem>
+                    <SelectItem value="price-low">
+                      Price: Low to High
+                    </SelectItem>
+                    <SelectItem value="price-high">
+                      Price: High to Low
+                    </SelectItem>
                   </SelectContent>
                 </Select>
               </div>
@@ -259,7 +297,9 @@ const Products = () => {
 
             {/* Results count */}
             <div className="mt-4 text-sm text-muted-foreground">
-              Showing {startIndex + 1}-{Math.min(startIndex + itemsPerPage, filteredProducts.length)} of {filteredProducts.length} products
+              Showing {startIndex + 1}-
+              {Math.min(startIndex + itemsPerPage, filteredProducts.length)} of{" "}
+              {filteredProducts.length} products
             </div>
           </div>
         </section>
@@ -271,7 +311,10 @@ const Products = () => {
               {/* Sidebar Filters - Desktop */}
               <aside className="hidden md:block w-64 flex-shrink-0">
                 <div className="sticky top-24">
-                  <ProductFilters filters={filters} onFilterChange={handleFilterChange} />
+                  <ProductFilters
+                    filters={filters}
+                    onFilterChange={handleFilterChange}
+                  />
                 </div>
               </aside>
 
@@ -281,9 +324,9 @@ const Products = () => {
                   <>
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                       {paginatedProducts.map((product, index) => (
-                        <ProductCard 
-                          key={product.id} 
-                          product={product} 
+                        <ProductCard
+                          key={product.id}
+                          product={product}
                           index={index}
                         />
                       ))}
@@ -294,16 +337,23 @@ const Products = () => {
                       <div className="mt-12 flex justify-center gap-2">
                         <Button
                           variant="outline"
-                          onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
+                          onClick={() =>
+                            setCurrentPage((p) => Math.max(1, p - 1))
+                          }
                           disabled={currentPage === 1}
                         >
                           Previous
                         </Button>
                         <div className="flex items-center gap-1">
-                          {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
+                          {Array.from(
+                            { length: totalPages },
+                            (_, i) => i + 1
+                          ).map((page) => (
                             <Button
                               key={page}
-                              variant={currentPage === page ? "default" : "outline"}
+                              variant={
+                                currentPage === page ? "default" : "outline"
+                              }
                               onClick={() => setCurrentPage(page)}
                               className="w-10"
                             >
@@ -313,7 +363,9 @@ const Products = () => {
                         </div>
                         <Button
                           variant="outline"
-                          onClick={() => setCurrentPage(p => Math.min(totalPages, p + 1))}
+                          onClick={() =>
+                            setCurrentPage((p) => Math.min(totalPages, p + 1))
+                          }
                           disabled={currentPage === totalPages}
                         >
                           Next
@@ -323,9 +375,11 @@ const Products = () => {
                   </>
                 ) : (
                   <div className="text-center py-16">
-                    <p className="text-lg text-muted-foreground">No products found matching your criteria.</p>
-                    <Button 
-                      variant="outline" 
+                    <p className="text-lg text-muted-foreground">
+                      No products found matching your criteria.
+                    </p>
+                    <Button
+                      variant="outline"
                       className="mt-4"
                       onClick={() => {
                         setSearchQuery("");
@@ -333,7 +387,7 @@ const Products = () => {
                           carbonFootprint: [0, 5] as [number, number],
                           biodegradable: false,
                           materials: [],
-                          priceRange: [0, 100] as [number, number],
+                          priceRange: [0, 8300] as [number, number],
                         });
                       }}
                     >

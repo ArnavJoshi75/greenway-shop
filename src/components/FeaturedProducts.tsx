@@ -10,49 +10,53 @@ const products = [
     name: "Bamboo Coffee Tumbler",
     vendor: "EcoEssentials Co.",
     price: 24.99,
-    image: "https://images.unsplash.com/photo-1517256064527-09c73fc73e38?w=500&q=80",
+    image:
+      "https://images.unsplash.com/photo-1517256064527-09c73fc73e38?w=500&q=80",
     rating: 4.8,
     reviews: 234,
     ecoScore: 95,
     badges: ["Biodegradable", "Carbon Neutral"],
-    carbonFootprint: "2.1 kg CO₂"
+    carbonFootprint: "2.1 kg CO₂",
   },
   {
     id: 2,
     name: "Organic Cotton Tote Bag",
     vendor: "GreenThreads",
-    price: 18.50,
-    image: "https://images.unsplash.com/photo-1591195853828-11db59a44f6b?w=500&q=80",
+    price: 18.5,
+    image:
+      "https://images.unsplash.com/photo-1591195853828-11db59a44f6b?w=500&q=80",
     rating: 4.9,
     reviews: 456,
     ecoScore: 98,
     badges: ["Reusable", "Fair Trade"],
-    carbonFootprint: "1.5 kg CO₂"
+    carbonFootprint: "1.5 kg CO₂",
   },
   {
     id: 3,
     name: "Reusable Food Wraps Set",
     vendor: "ZeroWaste Living",
-    price: 32.00,
-    image: "https://images.unsplash.com/photo-1584735175097-719d848f8449?w=500&q=80",
+    price: 32.0,
+    image:
+      "https://images.unsplash.com/photo-1584735175097-719d848f8449?w=500&q=80",
     rating: 4.7,
     reviews: 189,
     ecoScore: 92,
     badges: ["Plastic-Free", "Compostable"],
-    carbonFootprint: "1.8 kg CO₂"
+    carbonFootprint: "1.8 kg CO₂",
   },
   {
     id: 4,
     name: "Solar Power Bank",
     vendor: "SunCharge Tech",
     price: 45.99,
-    image: "https://images.unsplash.com/photo-1625948515291-69613efd103f?w=500&q=80",
+    image:
+      "https://images.unsplash.com/photo-1625948515291-69613efd103f?w=500&q=80",
     rating: 4.6,
     reviews: 312,
     ecoScore: 88,
     badges: ["Renewable Energy", "Durable"],
-    carbonFootprint: "3.2 kg CO₂"
-  }
+    carbonFootprint: "3.2 kg CO₂",
+  },
 ];
 
 const FeaturedProducts = () => {
@@ -75,14 +79,14 @@ const FeaturedProducts = () => {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {products.map((product, index) => (
-            <Card 
-              key={product.id} 
+            <Card
+              key={product.id}
               className="group overflow-hidden hover:shadow-lg transition-all duration-300 animate-fade-in"
               style={{ animationDelay: `${index * 100}ms` }}
             >
               <div className="relative overflow-hidden aspect-square">
-                <img 
-                  src={product.image} 
+                <img
+                  src={product.image}
                   alt={product.name}
                   className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-300"
                 />
@@ -102,7 +106,9 @@ const FeaturedProducts = () => {
 
               <CardContent className="p-4 space-y-3">
                 <div>
-                  <p className="text-xs text-muted-foreground mb-1">{product.vendor}</p>
+                  <p className="text-xs text-muted-foreground mb-1">
+                    {product.vendor}
+                  </p>
                   <h3 className="font-semibold text-foreground line-clamp-2 group-hover:text-primary transition-colors">
                     {product.name}
                   </h3>
@@ -123,12 +129,10 @@ const FeaturedProducts = () => {
 
                 <div className="flex items-center justify-between pt-2 border-t border-border">
                   <span className="text-2xl font-bold text-primary">
-                    ${product.price}
+                    ₹{Math.round(product.price * 83)}
                   </span>
                   <Button size="sm" asChild>
-                    <Link to={`/products/${product.id}`}>
-                      View Details
-                    </Link>
+                    <Link to={`/products/${product.id}`}>View Details</Link>
                   </Button>
                 </div>
               </CardContent>

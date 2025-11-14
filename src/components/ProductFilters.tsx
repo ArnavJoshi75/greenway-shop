@@ -36,7 +36,7 @@ const ProductFilters = ({ filters, onFilterChange }: FilterProps) => {
 
   const handleMaterialToggle = (material: string) => {
     const newMaterials = filters.materials.includes(material)
-      ? filters.materials.filter(m => m !== material)
+      ? filters.materials.filter((m) => m !== material)
       : [...filters.materials, material];
     onFilterChange({ ...filters, materials: newMaterials });
   };
@@ -50,12 +50,12 @@ const ProductFilters = ({ filters, onFilterChange }: FilterProps) => {
       carbonFootprint: [0, 5] as [number, number],
       biodegradable: false,
       materials: [],
-      priceRange: [0, 100] as [number, number],
+      priceRange: [0, 8300] as [number, number],
     });
   };
 
-  const hasActiveFilters = 
-    filters.carbonFootprint[0] !== 0 || 
+  const hasActiveFilters =
+    filters.carbonFootprint[0] !== 0 ||
     filters.carbonFootprint[1] !== 5 ||
     filters.biodegradable ||
     filters.materials.length > 0 ||
@@ -67,9 +67,9 @@ const ProductFilters = ({ filters, onFilterChange }: FilterProps) => {
       <div className="flex items-center justify-between">
         <h3 className="text-lg font-semibold text-foreground">Filters</h3>
         {hasActiveFilters && (
-          <Button 
-            variant="ghost" 
-            size="sm" 
+          <Button
+            variant="ghost"
+            size="sm"
             onClick={clearAllFilters}
             className="h-8 text-xs"
           >
@@ -80,9 +80,7 @@ const ProductFilters = ({ filters, onFilterChange }: FilterProps) => {
 
       {/* Carbon Footprint */}
       <div className="space-y-3">
-        <Label className="text-sm font-medium">
-          Carbon Footprint (kg CO₂)
-        </Label>
+        <Label className="text-sm font-medium">Carbon Footprint (kg CO₂)</Label>
         <div className="px-1">
           <Slider
             value={filters.carbonFootprint}
@@ -101,22 +99,20 @@ const ProductFilters = ({ filters, onFilterChange }: FilterProps) => {
 
       {/* Price Range */}
       <div className="space-y-3">
-        <Label className="text-sm font-medium">
-          Price Range ($)
-        </Label>
+        <Label className="text-sm font-medium">Price Range (₹)</Label>
         <div className="px-1">
           <Slider
             value={filters.priceRange}
             onValueChange={handlePriceRangeChange}
             min={0}
-            max={100}
-            step={5}
+            max={8300}
+            step={415}
             className="w-full"
           />
         </div>
         <div className="flex justify-between text-xs text-muted-foreground">
-          <span>${filters.priceRange[0]}</span>
-          <span>${filters.priceRange[1]}</span>
+          <span>₹{filters.priceRange[0]}</span>
+          <span>₹{filters.priceRange[1]}</span>
         </div>
       </div>
 

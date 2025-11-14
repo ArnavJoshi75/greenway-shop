@@ -24,13 +24,13 @@ interface ProductCardProps {
 
 const ProductCard = ({ product, index = 0 }: ProductCardProps) => {
   return (
-    <Card 
+    <Card
       className="group overflow-hidden hover:shadow-lg transition-all duration-300 animate-fade-in"
       style={{ animationDelay: `${index * 50}ms` }}
     >
       <div className="relative overflow-hidden aspect-square">
-        <img 
-          src={product.image} 
+        <img
+          src={product.image}
           alt={product.name}
           className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-300"
         />
@@ -71,12 +71,10 @@ const ProductCard = ({ product, index = 0 }: ProductCardProps) => {
 
         <div className="flex items-center justify-between pt-2 border-t border-border">
           <span className="text-2xl font-bold text-primary">
-            ${product.price}
+            ₹{Math.round(product.price * 83)}
           </span>
           <Button size="sm" asChild>
-            <Link to={`/products/${product.id}`}>
-              View Details
-            </Link>
+            <Link to={`/products/${product.id}`}>View Details</Link>
           </Button>
         </div>
       </CardContent>
